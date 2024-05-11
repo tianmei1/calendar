@@ -1,12 +1,12 @@
 # Getting Started with Create React App
 
-implement a calendar widget using ** React + typescript**
-Here is the screen video recorder for the QA and demo:
-https://github.com/tianmei1/calendar/assets/19297461/056dca8f-bf60-4b81-ae63-148d8f9efddc
+- implement a calendar widget using ** React + typescript**
+- Here is the screen video recorder for the QA and demo:
 
-## Available Scripts
+https://github.com/tianmei1/calendar/assets/19297461/8a128653-d4da-41ed-98ee-c15720aa296e
 
-In the project directory, you can run:
+
+# Available Scripts In the project directory, you can run:
 
 ### `npm start`
 
