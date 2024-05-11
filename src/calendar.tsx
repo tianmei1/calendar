@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import MonthTable from "./MonthTable";
 
 interface CalendarProps {
-  specificDate: number;
+  specificDate: boolean;
+  daysRange: number; 
 }
 
-const Calendar = ({ specificDate }: CalendarProps) => {
+const Calendar = ({ specificDate,daysRange }: CalendarProps) => {
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const weekDayNameMap: { [key: string]: string } = {
     Sun: "S",
@@ -17,9 +18,9 @@ const Calendar = ({ specificDate }: CalendarProps) => {
     Sat: "S",
   };
   const months = [0, 1, 2, 3, 4, 5];
-  const [selectedDate, setSelectedDate] = useState<number | null>(specificDate); // Initialize selected date with specificDate prop
+  const [selectedDate, setSelectedDate] = useState<string | null>(''); // Initialize selected date with specificDate prop
 
-  const handleDateSelect = (date: number) => {
+  const handleDateSelect = (date: string) => {
     if (selectedDate === date) {
       setSelectedDate(null);
     } else {
@@ -42,6 +43,7 @@ const Calendar = ({ specificDate }: CalendarProps) => {
           month={month}
           year={2024}
           selectedDate={selectedDate}
+          daysRange={daysRange}
           onDateSelect={handleDateSelect}
         />
       ))}

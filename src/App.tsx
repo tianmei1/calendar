@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <div className='date-picker'>
-        <Calendar specificDate={7} />
+        <Calendar specificDate={false} daysRange={5}/>
       </div>
     </div>
   );

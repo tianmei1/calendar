@@ -3,11 +3,12 @@ import React from "react";
 interface MontTableProps {
   month: number;
   year: number;
-  selectedDate: number | null; // Use the selectedDate prop passed from the Calendar component
-  onDateSelect: (date: number) => void;
+  selectedDate: string | null; // Use the selectedDate prop passed from the Calendar component
+  onDateSelect: (date: string) => void;
+  daysRange: number;
 }
 
-const MonthTable = ({ month, year, selectedDate, onDateSelect  }: MontTableProps) => {
+const MonthTable = ({ month, year, selectedDate, onDateSelect, daysRange  }: MontTableProps) => {
   const getDaysInMonth = (month: number, year: number) => {
     return new Date(year, month + 1, 0).getDate();
   };
@@ -32,26 +33,38 @@ const MonthTable = ({ month, year, selectedDate, onDateSelect  }: MontTableProps
     }
   };
 
-  const handleClick = (day: number) => {
-    onDateSelect(day); // Call the onDateSelect callback function from the Calendar component
+  const handleClick = (day: number, month: number, year: number) => {
+    onDateSelect(`${year}-${month}-${day}`); // Call the onDateSelect callback function from the Calendar component
   };
 
-  const isInRange = (day: number | null) => {
+  const isInRange = (day: number | null, month: number | null, year: number | null) => {
     if (!day || !selectedDate) return false;
     const index = daysArray.indexOf(day);
-    const selectedIndex = daysArray.indexOf(selectedDate);
-    return (
-      index >= selectedIndex &&
-      index <= selectedIndex + 3 &&
-      index !== 0 &&
-      index !== daysArray.length - 1
-    );
+    let selectDayIndex = Number(selectedDate.split('-')[2])
+    const selectedIndex = daysArray.indexOf(selectDayIndex);
+    const selectedYear = Number(selectedDate.split('-')[0])
+    const selectedMonth = Number(selectedDate.split('-')[1])
+    if(selectedYear===year&& selectedMonth===month){
+      return (
+        index >= selectedIndex &&
+        index <= selectedIndex + (daysRange-2) &&
+        index !== 0 &&
+        index !== daysArray.length - 1
+      );
+    }
+    return false
   };
-  const isAtRangeBorder = (day: number | null) => {
+  const isAtRangeBorder = (day: number | null, month: number | null, year: number | null) => {
     if (!day || !selectedDate) return false;
-    const index = daysArray.indexOf(day);
-    const selectedIndex = daysArray.indexOf(selectedDate);
-    return index === selectedIndex || index === selectedIndex + 4;
+    const selectedYear = Number(selectedDate.split('-')[0])
+    const selectedMonth = Number(selectedDate.split('-')[1])
+    if(selectedYear===year&& selectedMonth===month){
+      const index = daysArray.indexOf(day);
+      let selectDayIndex = Number(selectedDate.split('-')[2])
+      const selectedIndex = daysArray.indexOf(selectDayIndex);
+      return index === selectedIndex || index === selectedIndex + (daysRange-1);
+    }
+    return false
   };
   return (
     <div className="calendar">
@@ -64,14 +77,14 @@ const MonthTable = ({ month, year, selectedDate, onDateSelect  }: MontTableProps
           <div
             key={index}
             className={`day ${getDayOfWeek(year, month, day) === "Sun" ? "sunday" : ""
-              } ${ isInRange(day) ? "in-range" : ""}
-              ${ isAtRangeBorder(day) ? "range-border" : ""
+              } ${ isInRange(day, month, year) ? "in-range" : ""}
+              ${ isAtRangeBorder(day, month, year) ? "range-border" : ""
               }`}
           >
             <div
               className={`day-container ${ selectedDate === day ? "selected" : ""
                 } `}
-              onClick={() => handleClick(day as number)}
+              onClick={() => handleClick(day as number, month as number, year as number)}
             >
               {day}
             </div>
