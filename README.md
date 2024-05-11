@@ -1,6 +1,8 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+implement a calendar widget using ** React + typescript**
+Here is the screen video recorder for the QA and demo:
+https://github.com/tianmei1/calendar/assets/19297461/056dca8f-bf60-4b81-ae63-148d8f9efddc
 
 ## Available Scripts
 
