@@ -11,3 +11,105 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.date-picker{
+  height: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.calendar-container{
+  margin-top: 30px;
+  display: flex;
+  width: 300px;
+  flex-direction: column; /* Display children in a column */
+  justify-content: flex-start;
+  align-items: center;
+  max-height: 600px; /* Adjust this value to show more months */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding: 10px;
+  transition: margin 0.3s ease;
+  border-radius: 10px;
+  background-color: #eceff4;
+}
+.calendar {
+  width: 100%;
+}
+.weekday{
+  width: 100%;
+}
+
+.calendar-container:hover {
+  transform: scale(1.1);
+}
+
+.weekdays, .days {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
+.weekday{
+  font-weight: bold;
+}
+.weekday, .day {
+  width: 42px;
+  height: 20px;
+  text-align: center;
+}
+.day{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.month-name {
+  text-align: left;
+  background-color: #d8dee9;
+  display: block;
+  margin-block-start: 0.6em;
+  margin-block-end: 0.6em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
+
+.sunday {
+  color: red; /* Set the font color to red for Sundays */
+}
+
+.day-container{
+  width: 20px;
+  height: 20px;
+}
+
+.day-container:hover {
+  background-color: black; /* Set background color to black */
+  color: white; /* Set font color to white */
+  border-radius: 5px;
+}
+
+.in-range{
+  background-color: rgb(161, 156, 156); /* Set background color to black */
+  color: white; /* Set font color to white */
+}
+.range-border{
+  background-color: black; /* Set background color to black */
+  color: white; /* Set font color to white */
+  border-radius: 5px;
+  border-right: none; /* Remove border on right side */
+}
